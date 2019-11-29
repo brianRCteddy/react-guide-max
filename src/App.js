@@ -43,7 +43,8 @@ class App extends Component {
 
 	render() {
 		const style = {
-			backgroundColor: 'white',
+			backgroundColor: 'green',
+			fontColor: 'white',
 			font: 'inherit',
 			border: '1px solid blue',
 			padding: '8px',
@@ -68,16 +69,25 @@ class App extends Component {
 					})}
 				</div>
 			);
+			style.backgroundColor = 'red';
+		}
+
+		//let styleClasses = [ 'green', 'bold' ].join(' ');
+		const styleClasses = [];
+		if (this.state.persons.length <= 2) {
+			styleClasses.push('red');
+		}
+		if (this.state.persons.length < 2) {
+			styleClasses.push('bold');
 		}
 
 		return (
 			<div className="App">
-				<header className="App-header">
-					<h1 className="App-title">Welcome to React</h1>
-					<p>This is really working</p>
-				</header>
+				<h1>Styling React Components</h1>
+				<h2>Hi I'm a React App</h2>
+				<p className={styleClasses.join(' ')}>This is really working</p>
 				<button style={style} onClick={this.togglePersonsHandler}>
-					Switch Button
+					Toggle Button
 				</button>
 				{persons}
 			</div>

@@ -6,3 +6,15 @@
 	padding: 16px;
 	text-align: center;
 }
+
+.green {
+	color: green;
+}
+
+.red {
+	color: red;
+}
+
+.bold {
+	font-weight: bold;
+}
