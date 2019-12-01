@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import classes from './App.css';
 import Person from './Person/Person';
 
 //this.statements
@@ -42,16 +42,8 @@ class App extends Component {
 	};
 
 	render() {
-		const style = {
-			backgroundColor: 'green',
-			fontColor: 'white',
-			font: 'inherit',
-			border: '1px solid blue',
-			padding: '8px',
-			cursor: 'pointer'
-		};
-
 		let persons = null;
+		let btnClass = '';
 
 		if (this.state.showPersons) {
 			persons = (
@@ -69,24 +61,25 @@ class App extends Component {
 					})}
 				</div>
 			);
-			style.backgroundColor = 'red';
+
+			btnClass = classes.Red;
 		}
 
 		//let styleClasses = [ 'green', 'bold' ].join(' ');
 		const styleClasses = [];
 		if (this.state.persons.length <= 2) {
-			styleClasses.push('red');
+			styleClasses.push(classes.red);
 		}
 		if (this.state.persons.length < 2) {
-			styleClasses.push('bold');
+			styleClasses.push(classes.bold);
 		}
 
 		return (
-			<div className="App">
+			<div className={classes.App}>
 				<h1>Styling React Components</h1>
 				<h2>Hi I'm a React App</h2>
 				<p className={styleClasses.join(' ')}>This is really working</p>
-				<button style={style} onClick={this.togglePersonsHandler}>
+				<button className={btnClass} onClick={this.togglePersonsHandler}>
 					Toggle Button
 				</button>
 				{persons}
