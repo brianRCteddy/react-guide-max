@@ -29,6 +29,20 @@ class App extends Component {
 		console.log('App.js - componentDidMount');
 	}
 
+	shouldComponentUpdate(nextProps, nextState) {
+		console.log('App.js - shouldComponentUpdate');
+		return true;
+	}
+	getSnapshotBeforeUpdate(prevProps, prevState) {
+		console.log('App.js - getSnapshotBeforeUpdate');
+		return { message: 'Snapshot' };
+	}
+
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		console.log('App.js - componentDidUpdate');
+		console.log(snapshot);
+	}
+
 	deletePersonHandler = (personIndex) => {
 		//const people = this.state.people.slice();
 		const people = [ ...this.state.people ];
