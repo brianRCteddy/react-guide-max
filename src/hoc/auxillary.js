@@ -1,7 +1,3 @@
-import React from 'react';
-
-const auxillary = () => {
-	return <div />;
-};
+const auxillary = (props) => props.children;
 
 export default auxillary;
