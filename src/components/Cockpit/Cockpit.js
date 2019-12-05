@@ -2,7 +2,6 @@ import React from 'react';
 import classes from './Cockpit.css';
 
 const cockpit = (props) => {
-	//let styleClasses = [ 'green', 'bold' ].join(' ');
 	const styleClasses = [];
 	let btnClass = '';
 	if (props.showPeople) {
@@ -17,8 +16,8 @@ const cockpit = (props) => {
 	}
 	return (
 		<div className={classes.Cockpit}>
-			<h1>Styling React Components</h1>
 			<h2>Hi I'm a React App</h2>
+			<p>{props.title}</p>
 			<p className={styleClasses.join(' ')}>This is really working</p>
 			<button className={btnClass} onClick={props.clicked}>
 				Toggle Button

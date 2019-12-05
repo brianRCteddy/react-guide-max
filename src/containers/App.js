@@ -5,6 +5,11 @@ import Cockpit from '../components/Cockpit/Cockpit';
 
 //this.statements
 class App extends Component {
+	constructor(props) {
+		super(props);
+		console.log('App.js - Constructor');
+	}
+
 	state = {
 		people: [
 			{ id: '1231sd', name: 'Max', age: 28 },
@@ -14,6 +19,15 @@ class App extends Component {
 		otherState: 'some other value',
 		showPeople: false
 	};
+
+	static getDerivedStateFromProps(props, state) {
+		console.log('App.js - getDerivedStateFromProps', props);
+		return state;
+	}
+
+	componentDidMount() {
+		console.log('App.js - componentDidMount');
+	}
 
 	deletePersonHandler = (personIndex) => {
 		//const people = this.state.people.slice();
@@ -43,6 +57,7 @@ class App extends Component {
 	};
 
 	render() {
+		console.log('App.js - Render');
 		let people = null;
 
 		if (this.state.showPeople) {
@@ -58,6 +73,7 @@ class App extends Component {
 		return (
 			<div className={classes.App}>
 				<Cockpit
+					title={this.props.appTitle}
 					showPeople={this.state.showPeople}
 					people={this.state.people}
 					clicked={this.togglePeopleHandler}
