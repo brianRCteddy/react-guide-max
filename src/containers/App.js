@@ -4,6 +4,7 @@ import People from '../components/People/People';
 import Cockpit from '../components/Cockpit/Cockpit';
 import withClass from '../hoc/withClass';
 import Auxillary from '../hoc/Auxillary';
+import AuthContext from '../context/auth-context';
 
 //this.statements
 class App extends Component {
@@ -21,7 +22,8 @@ class App extends Component {
 		otherState: 'some other value',
 		showPeople: false,
 		showCockpit: true,
-		changeCounter: 0
+		changeCounter: 0,
+		isLogin: false
 	};
 
 	static getDerivedStateFromProps(props, state) {
@@ -74,6 +76,10 @@ class App extends Component {
 		});
 	};
 
+	loginHandler = () => {
+		this.setState({ isLogin: true });
+	};
+
 	togglePeopleHandler = () => {
 		const doesShow = this.state.showPeople;
 		this.setState({ showPeople: !doesShow });
@@ -89,6 +95,7 @@ class App extends Component {
 					people={this.state.people}
 					clicked={this.deletePersonHandler}
 					changed={this.nameChangedHandler}
+					isAuthenticated={this.state.isLogin}
 				/>
 			);
 		}
@@ -102,15 +109,22 @@ class App extends Component {
 				>
 					Remove Cockpit
 				</button>
-				{this.state.showCockpit ? (
-					<Cockpit
-						title={this.props.appTitle}
-						showPeople={this.state.showPeople}
-						peopleLength={this.state.people.length}
-						clicked={this.togglePeopleHandler}
-					/>
-				) : null}
-				{people}
+				<AuthContext.Provider
+					value={{
+						isLogin: this.state.isLogin,
+						login: this.loginHandler
+					}}
+				>
+					{this.state.showCockpit ? (
+						<Cockpit
+							title={this.props.appTitle}
+							showPeople={this.state.showPeople}
+							peopleLength={this.state.people.length}
+							clicked={this.togglePeopleHandler}
+						/>
+					) : null}
+					{people}
+				</AuthContext.Provider>
 			</Auxillary>
 		);
 	}
